@@ -47,6 +47,7 @@ class Habit(models.Model):
 
     )
     periodicity = models.CharField(
+        max_length=30,
         choices=PERIODICITY_CHOISES,
         verbose_name='периодичность',
 

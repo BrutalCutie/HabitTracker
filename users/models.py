@@ -8,14 +8,23 @@ class User(AbstractUser):
         verbose_name='псевдоним',
         null=False,
         blank=False,
+        unique=True
     )
+
+    email = models.EmailField(
+        unique=True,
+        verbose_name="почта"
+    )
+
     telegram_id = models.IntegerField(
-        max_length=20,
         verbose_name="Telegram ID",
         null=False,
         blank=False,
+        unique=True
 
     )
+
+    USERNAME_FIELD = 'username'
 
     def __str__(self):
         return f"{self.pk} | {self.username}"
