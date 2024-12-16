@@ -25,6 +25,7 @@ class User(AbstractUser):
     )
 
     USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['telegram_id', 'email']
 
     def __str__(self):
         return f"{self.pk} | {self.username}"
