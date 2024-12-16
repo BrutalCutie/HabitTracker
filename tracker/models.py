@@ -26,7 +26,7 @@ class Habit(models.Model):
         verbose_name='место привычки',
 
     )
-    time = models.DateTimeField(
+    time = models.TimeField(
         verbose_name="время для привычки",
 
     )
