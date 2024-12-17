@@ -42,12 +42,9 @@ INSTALLED_APPS = [
 
 # Настройки CORS
 CORS_ALLOWED_ORIGINS = [
-    '<http://localhost:8000>',
+    'http://localhost:8000',
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "*",  # пока что разрешаем запросы с любого сервера
-]
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -59,8 +56,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
 
 }
 

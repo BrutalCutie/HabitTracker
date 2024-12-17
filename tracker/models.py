@@ -24,10 +24,14 @@ class Habit(models.Model):
     place = models.CharField(
         max_length=50,
         verbose_name='место привычки',
+        blank=True,
+        null=True
 
     )
     time = models.TimeField(
         verbose_name="время для привычки",
+        null=True,
+        blank=True
 
     )
     action = models.CharField(
@@ -35,7 +39,7 @@ class Habit(models.Model):
         verbose_name="действие",
 
     )
-    is_nice_habbit = models.BooleanField(
+    is_nice_habit = models.BooleanField(
         default=False,
         verbose_name='признак приятной привычки',
     )
@@ -44,18 +48,23 @@ class Habit(models.Model):
         on_delete=models.CASCADE,
         related_name='nice_habbits',
         verbose_name="приятная привычка",
+        blank=True,
+        null=True
 
     )
     periodicity = models.CharField(
         max_length=30,
         choices=PERIODICITY_CHOISES,
         verbose_name='периодичность',
+        default='every_day'
 
     )
     reward = models.CharField(
         max_length=100,
         verbose_name="вознаграждение",
         help_text="То, что вы получите за выполнение привычки",
+        blank=True,
+        null=True
 
     )
     time_to_complete = models.DurationField(
