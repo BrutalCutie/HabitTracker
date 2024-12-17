@@ -37,15 +37,20 @@ INSTALLED_APPS = [
 
 ]
 
+# Параментры поведения приложений
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+
 }
 
+# Параметры ключей авторизации
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # TODO поменять на меньшее время
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # TODO поменять на меньшее время
@@ -82,9 +87,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
+# База данных
+# разработка велась на sqlite3. Если желаете использовать другую
+# базу данных - ниже есть ссылка где подробно описано, как это можно сделать
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -134,4 +140,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# модель авторизации пользователя
 AUTH_USER_MODEL = 'users.User'
