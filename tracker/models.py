@@ -20,6 +20,8 @@ class Habit(models.Model):
         on_delete=models.CASCADE,
         related_name='habits',
         verbose_name="создатель привычки",
+        null=True,
+        blank=True
 
     )
     place = models.CharField(

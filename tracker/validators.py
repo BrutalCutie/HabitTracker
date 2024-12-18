@@ -8,7 +8,9 @@ class OnlyOnePosibleValidator:
         self.fields = fields
 
     def __call__(self, data):
+        is_nice_habit = data.get("is_nice_habit")
         one_posible = False
+
         for field in self.fields:
             result = dict(data).get(field)
 
@@ -20,6 +22,9 @@ class OnlyOnePosibleValidator:
                 continue
 
             raise ValidationError(f"Из полей {', '.join(self.fields)} выбрать можно только одно.")
+
+        if not one_posible and not is_nice_habit:
+            raise ValidationError(f"Из полей {', '.join(self.fields)} - одно должно быть выбрано")
 
 
 class NotSoLongValidator:
@@ -53,11 +58,12 @@ class HabitRightTime:
     def __call__(self, data):
         is_nice_habit = data.get('is_nice_habit')
 
+        print(is_nice_habit, data)
         if is_nice_habit:
             return
 
         if not data.get('time'):
-            raise ValidationError("Полезная привычка должна содержать время для выполнения(\"time\")")
+            raise ValidationError("Полезная привычка должна содержать время для выполнения(time)")
 
 
 class HabitRightTimeToComplete:
@@ -68,7 +74,7 @@ class HabitRightTimeToComplete:
             return
 
         if not data.get('time_to_complete'):
-            raise ValidationError("Полезная привычка должна содержать длительность выполнения(\"time_to_complete\")")
+            raise ValidationError("Полезная привычка должна содержать длительность выполнения(time_to_complete)")
 
 
 class HabitRightPlace:
@@ -79,5 +85,5 @@ class HabitRightPlace:
             return
 
         if not data.get('place'):
-            raise ValidationError("Полезная привычка должна содержать место выполнения(\"place\")")
+            raise ValidationError("Полезная привычка должна содержать место выполнения(place)")
 
