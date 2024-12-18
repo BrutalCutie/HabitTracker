@@ -12,6 +12,7 @@ class Habit(models.Model):
         ("every_day", 'Каждый день'),
         ("once_2day", 'Раз в 2 дня'),
         ("once_3day", 'раз в 3 дня'),
+        ("once_week", 'раз в неделю'),
     )
 
     owner = models.ForeignKey(
@@ -70,6 +71,8 @@ class Habit(models.Model):
     time_to_complete = models.DurationField(
         help_text="в секундах(до 120 сек)",
         verbose_name="длительность выполнения привычки",
+        null=True,
+        blank=True
 
     )
     publish_to_all = models.BooleanField(

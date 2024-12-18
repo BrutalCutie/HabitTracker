@@ -49,7 +49,35 @@ class NiceHabitOwnRewardValidator:
             raise ValidationError("Приятная привычка не может содержать свою привычку или награду за выполнение")
 
 
-# TODO валидатор для полезной привычки:
-# TODO должно быть указано время
-# TODO должно быть длительность выполнения
-# TODO должно быть указано место
+class HabitRightTime:
+    def __call__(self, data):
+        is_nice_habit = data.get('is_nice_habit')
+
+        if is_nice_habit:
+            return
+
+        if not data.get('time'):
+            raise ValidationError("Полезная привычка должна содержать время для выполнения(\"time\")")
+
+
+class HabitRightTimeToComplete:
+    def __call__(self, data):
+        is_nice_habit = data.get('is_nice_habit')
+
+        if is_nice_habit:
+            return
+
+        if not data.get('time_to_complete'):
+            raise ValidationError("Полезная привычка должна содержать длительность выполнения(\"time_to_complete\")")
+
+
+class HabitRightPlace:
+    def __call__(self, data):
+        is_nice_habit = data.get('is_nice_habit')
+
+        if is_nice_habit:
+            return
+
+        if not data.get('place'):
+            raise ValidationError("Полезная привычка должна содержать место выполнения(\"place\")")
+
