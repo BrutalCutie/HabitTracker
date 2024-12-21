@@ -3,6 +3,7 @@ import requests
 from rest_framework import status
 
 from config.settings import TG_BOT_TOKEN
+from tracker.models import Habit
 
 
 class HabitTimeControl:
@@ -63,5 +64,12 @@ def send_telegram_message(tg_user_id, text):
         print(f"Что-то пошло не так. сообщение не было отправлено. Status {response}. Параметры: {params}")
 
 
-def set_new_notification_date():
-    pass
+def set_new_notification_date(habit_id):
+    """
+    меняет время последнего уведомления на текущее время
+    :param habit_id:
+    :return:
+    """
+    habit = Habit.objects.get(pk=habit_id)
+    habit.last_notification = datetime.datetime.now()
+    habit.save()

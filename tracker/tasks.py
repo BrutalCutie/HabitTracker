@@ -1,7 +1,7 @@
 from celery import shared_task
 
 from tracker.models import Habit
-from tracker.services import HabitTimeControl, send_telegram_message
+from tracker.services import HabitTimeControl, send_telegram_message, set_new_notification_date
 
 
 @shared_task
@@ -20,6 +20,8 @@ def remind_controler():
 
         # проверка на полное совпадение должной датыВремени уведомления и текущей
         if hc.is_today_notification(habit.last_notification, habit.periodicity):
+            # при совпадении - меняем дату последнего уведомления на текущую и отправляем сообщение
+            set_new_notification_date(habit.id)
             send_notification.delay(habit.pk)
 
 

@@ -65,8 +65,8 @@ REST_FRAMEWORK = {
 
 # Параметры ключей авторизации
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # TODO поменять на меньшее время
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # TODO поменять на меньшее время
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 MIDDLEWARE = [
