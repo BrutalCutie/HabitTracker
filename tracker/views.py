@@ -12,9 +12,14 @@ class HabitViewSet(viewsets.ModelViewSet):
     pagination_class = HabitsPagination
 
     def perform_create(self, serializer):
-        obj = serializer.save()
-        obj.owner = self.request.user
-        obj.save()
+        habit = serializer.save()
+        habit.owner = self.request.user
+        habit.save()
+
+        if not habit.is_nice_habit:  # если это полезная привычка - запускаем отложенную задачу напоминания
+            periodicity_time = habit.periodicity
+
+            # send_notification.delay(habit.pk)
 
     def get_permissions(self):
         if self.action in ['update', 'partial_update', 'delete']:

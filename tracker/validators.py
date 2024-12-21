@@ -58,7 +58,6 @@ class HabitRightTime:
     def __call__(self, data):
         is_nice_habit = data.get('is_nice_habit')
 
-        print(is_nice_habit, data)
         if is_nice_habit:
             return
 

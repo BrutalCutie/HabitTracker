@@ -9,10 +9,10 @@ class Habit(models.Model):
     )
 
     PERIODICITY_CHOISES = (
-        ("every_day", 'Каждый день'),
-        ("once_2day", 'Раз в 2 дня'),
-        ("once_3day", 'раз в 3 дня'),
-        ("once_week", 'раз в неделю'),
+        (1440, 'Каждый день'),
+        (2880, 'Раз в 2 дня'),
+        (4320, 'раз в 3 дня'),
+        (10080, 'раз в неделю'),
     )
 
     owner = models.ForeignKey(
@@ -84,8 +84,15 @@ class Habit(models.Model):
 
     )
 
+    last_notification = models.DateTimeField(
+        verbose_name="дата последнего уведомления",
+        default=None,
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
-        return f"{self.pk} | {self.owner.username}"
+        return f"{self.pk} | {self.action}"
 
     class Meta:
         verbose_name = "привычка"
