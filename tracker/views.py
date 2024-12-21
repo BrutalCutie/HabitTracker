@@ -16,18 +16,14 @@ class HabitViewSet(viewsets.ModelViewSet):
         habit.owner = self.request.user
         habit.save()
 
-        if not habit.is_nice_habit:  # если это полезная привычка - запускаем отложенную задачу напоминания
-            periodicity_time = habit.periodicity
-
-            # send_notification.delay(habit.pk)
-
     def get_permissions(self):
         if self.action in ['update', 'partial_update', 'delete']:
             self.permission_classes = [IsHabitOwner]
 
         return super().get_permissions()
 
-    def get_queryset(self): return Habit.objects.filter(owner=self.request.user.pk)
+    def get_queryset(self):
+        return Habit.objects.filter(owner=self.request.user.pk)
 
 
 class PublishedHabitsListAPIView(generics.ListAPIView):

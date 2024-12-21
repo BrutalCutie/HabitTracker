@@ -17,4 +17,3 @@ urlpatterns = [
     path("users/token/refresh/", TokenRefreshView.as_view(), name='token-obtain-refresh')
 
 ] + router.urls
-

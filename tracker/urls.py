@@ -14,4 +14,3 @@ urlpatterns = [
     path('published-habits/', PublishedHabitsListAPIView.as_view(), name='published-habits'),
     path('published-habits/<int:pk>/', PublishedHabitsRetrieveAPIView.as_view(), name='published-habits-retrieve')
 ] + router.urls
-

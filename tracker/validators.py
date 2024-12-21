@@ -85,4 +85,3 @@ class HabitRightPlace:
 
         if not data.get('place'):
             raise ValidationError("Полезная привычка должна содержать место выполнения(place)")
-
