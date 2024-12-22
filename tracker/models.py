@@ -55,11 +55,11 @@ class Habit(models.Model):
         null=True
 
     )
-    periodicity = models.CharField(
+    periodicity = models.IntegerField(
         max_length=30,
         choices=PERIODICITY_CHOISES,
         verbose_name='периодичность',
-        default='every_day'
+        default=1440
 
     )
     reward = models.CharField(
