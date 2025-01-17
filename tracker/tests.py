@@ -39,7 +39,7 @@ class HabitTestCase(APITestCase):
         self.assertEqual(
             response.json(),
             {'id': 1, 'place': 'Работа', 'time': '10:00:00', 'action': 'Выпить воды', 'is_nice_habit': False,
-             'periodicity': 'every_day', 'reward': 'Скушать печенюшку', 'time_to_complete': '00:02:00',
+             'periodicity': 1440, 'reward': 'Скушать печенюшку', 'time_to_complete': '00:02:00',
              'publish_to_all': True, 'owner': 1, 'chained_habit': None, 'last_notification': None}
 
         )
@@ -55,14 +55,17 @@ class HabitTestCase(APITestCase):
             "place": "Работа"
 
         }
-        self.client.post(
+        response = self.client.post(
             path='/habits/',
             data=data
         )
 
-        self.assertTrue(Habit.objects.get(pk=1))
+        # забираем id отдельно, потому что он может меняться в зависимости от тестов
+        created_habit_id = response.json()['id']
 
-        Habit.objects.get(pk=1).delete()
+        self.assertTrue(Habit.objects.get(pk=created_habit_id))
+
+        Habit.objects.get(pk=created_habit_id).delete()
 
         self.assertFalse(Habit.objects.all())
 

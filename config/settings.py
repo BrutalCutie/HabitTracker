@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -183,3 +184,16 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute='*/1'),
     },
 }
+
+# меняем настройки дазы данных при тестировании
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'DB': os.getenv("POSTGERS_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": "localhost",
+            "PORT": os.getenv("POSTGRES_PORT"),
+        }
+    }

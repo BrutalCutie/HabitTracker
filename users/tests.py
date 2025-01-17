@@ -28,13 +28,14 @@ class HabitTestCase(APITestCase):
         self.assertTrue(
             User.objects.all().exists()
         )
-        # Делаем заглушки, потому, что пароль хэшируется, а дата меняется
+        # Делаем заглушки, потому, что пароль хэшируется, дата меняется, а id может меняться в зависимости от тестов
         mock_password = response.json()['password']
         mock_date_joined = response.json()['date_joined']
+        mock_id = response.json()['id']
 
         self.assertEqual(
             response.json(),
-            {'id': 1, 'password': mock_password,
+            {'id': mock_id, 'password': mock_password,
              'last_login': None, 'is_superuser': False, 'first_name': '', 'last_name': '', 'is_staff': False,
              'is_active': False, 'date_joined': mock_date_joined, 'username': 'testuser',
              'email': 'testuser@testuser.ru', 'telegram_id': 1111, 'groups': [], 'user_permissions': []}
