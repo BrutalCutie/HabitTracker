@@ -33,6 +33,7 @@ jobs:
           POSTGRES_DB: 'myproject'
           POSTGRES_USER: 'postgres'
           POSTGRES_PASSWORD: '156489198515'
+          POSTGRES_HOST: 'localhost'
         ports:
           - 5432:5432
         options: >-
