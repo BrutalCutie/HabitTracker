@@ -61,7 +61,18 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Down load environment
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+        log-public-key: true
+
+    - name: Server connection
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }}
+
+    - name: Download environment
       run: scp root@77.232.138.209:/root/envs/.env .env
 
     - name: Run migrations
