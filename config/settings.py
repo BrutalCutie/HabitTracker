@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -107,13 +107,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # разработка велась на sqlite3. Если желаете использовать другую
 # базу данных - ниже есть ссылка где подробно описано, как это можно сделать
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.getenv("DB_NAME"),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("POSTGERS_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

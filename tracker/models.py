@@ -56,7 +56,6 @@ class Habit(models.Model):
 
     )
     periodicity = models.IntegerField(
-        max_length=30,
         choices=PERIODICITY_CHOISES,
         verbose_name='периодичность',
         default=1440
