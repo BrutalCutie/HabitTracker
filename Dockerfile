@@ -9,7 +9,12 @@ RUN apt-get update \
 
 COPY requirements.txt ./
 
-RUN  pip install django
+RUN echo '-------------------'
+RUN echo '-------------------'
+RUN python --version
+RUN echo '-------------------'
+RUN echo '-------------------'
+
 
 COPY . .
 
