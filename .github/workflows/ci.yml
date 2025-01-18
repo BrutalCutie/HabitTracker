@@ -122,6 +122,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
             cd ${{ secrets.WORK_DIR }}
             docker compose down --rmi local || true
-            docker-compose up --build
+            docker-compose up --build -d
 
           EOF
