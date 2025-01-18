@@ -190,10 +190,10 @@ if 'test' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'DB': os.getenv("POSTGERS_DB"),
-            "USER": os.getenv("POSTGRES_USER"),
-            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            'DB': 'myproject',
+            "USER": "postgres",
+            "PASSWORD": '156489198515',
             "HOST": "localhost",
-            "PORT": os.getenv("POSTGRES_PORT"),
+            "PORT": "5432",
         }
     }
