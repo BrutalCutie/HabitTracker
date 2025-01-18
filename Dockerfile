@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.12.3
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN apt-get update \
 
 COPY requirements.txt ./
 
-RUN  pip3 install -r requirements.txt --no-cache-dir
+RUN  pip3 install -r requirements.txt
 
 COPY . .
 
