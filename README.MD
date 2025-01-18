@@ -5,8 +5,9 @@
 При разработке использовалась БД sqlite3
 <hr>
 
-# Гайд для CI/CD на Docker-compose
-<a href=''>**Тыдыщь**</a>
+# <a href='https://github.com/BrutalCutie/HabitTracker/blob/8d1fbfb4d3cbd7ddebbbb5424178a85cb558a895/.github/workflows/Ci-CdGuide.md'>**Гайд для CI/CD на Docker-compose**</a>
+<br>
+<hr>
 
 # Установка
 Проект был написан через poetry.
