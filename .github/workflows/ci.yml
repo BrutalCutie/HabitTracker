@@ -117,29 +117,11 @@ jobs:
             pip install -r requirements.txt
           EOF
 
-#       ---/// Вставка отсебятины ///---
       - name: Docker build
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
             cd ${{ secrets.WORK_DIR }}
-            source venv/bin/activate
-            docker-compose build
+            docker compose down --rmi local || true
+            docker-compose up --build
 
           EOF
-
-
-#
-#      - name: Install migrations on server
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
-#            cd ${{ secrets.WORK_DIR }}
-#            source venv/bin/activate
-#            python manage.py migrate
-#          EOF
-
-#
-#      - name: Restart main application
-#        run: |
-#          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
-#            sudo systemctl restart myproject
-#          EOF
