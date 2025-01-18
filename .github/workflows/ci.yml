@@ -29,11 +29,10 @@ jobs:
     services:
       db:
         image: postgres:16
-#        env:
-#          POSTGRES_DB: 'myproject'
-#          POSTGRES_USER: 'postgres'
-#          POSTGRES_PASSWORD: '156489198515'
-#          POSTGRES_HOST: 'localhost'
+        env:
+          POSTGRES_DB: 'myproject'
+          POSTGRES_USER: 'postgres'
+          POSTGRES_PASSWORD: '156489198515'
         ports:
           - 5432:5432
         options: >-
@@ -74,7 +73,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }}
 
     - name: Download environment
-      run: scp ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.ENV_DIR }}.env .env
+      run: scp ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.ENV_DIR }}.testenv .env
 
     - name: Run migrations
       run: python manage.py migrate
