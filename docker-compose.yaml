@@ -24,6 +24,7 @@ services:
 
   app:
     build: .
+    image: ubuntu:lastest
     tty: true
     ports:
       - "8000:8000"

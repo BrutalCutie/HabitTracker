@@ -9,7 +9,7 @@ RUN apt-get update \
 
 COPY requirements.txt ./
 
-RUN  ping www.google.com -c 5
+RUN  pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
