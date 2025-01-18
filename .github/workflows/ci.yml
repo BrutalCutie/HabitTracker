@@ -108,6 +108,12 @@ jobs:
             cp ${{ secrets.ENV_DIR }}.env ${{ secrets.WORK_DIR }}.env
           EOF
 
+      - name: Update pip
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
+            python -m pip install --upgrade pip
+          EOF
+
       - name: Install dependencies on server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP_ADDRESS }} << 'EOF'
