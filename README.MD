@@ -5,7 +5,8 @@
 При разработке использовалась БД sqlite3
 <hr>
 
-# <a href='https://github.com/BrutalCutie/HabitTracker/blob/8d1fbfb4d3cbd7ddebbbb5424178a85cb558a895/.github/workflows/Ci-CdGuide.md'>**Гайд для CI/CD на Docker-compose**</a>
+# <a href='https://github.com/BrutalCutie/HabitTracker/blob/8d1fbfb4d3cbd7ddebbbb5424178a85cb558a895/.github/workflows/Ci-CdGuide.md'>Гайд для CI/CD на Docker-compose</a>
+### <a href='http://77.232.138.209/'>Работающее приложение</a>
 <br>
 <hr>
 
