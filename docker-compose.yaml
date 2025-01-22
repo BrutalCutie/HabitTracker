@@ -40,7 +40,7 @@ services:
         condition: service_healthy
 
     volumes:
-      - .:/var/www/html/app
+      - .:/app
 
   nginx:
     build:
